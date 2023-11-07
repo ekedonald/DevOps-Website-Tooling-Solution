@@ -234,5 +234,40 @@ sudo mount -a
 sudo systemctl daemon-reload
 ```
 
+* Verify your setup by running `df -h`
+
 ### Step 4: Install and configure the NFS Server.
+
+* Update the list of packages in the package manager.
+
+```sh
+sudo yum -y update
+```
+
+* Install the NFS Server package.
+
+```sh
+sudo yum install nfs-utils -y
+```
+
+* Start the NFS Server service.
+
+```sh
+sudo systemctl start nfs-server.service
+```
+
+* Enable the NFS Server service.
+
+```sh
+sudo systemctl enable nfs-server.service
+```
+
+* Check the status of the NFS Server service.
+
+```sh
+sudo systemctl status nfs-server.service
+```
+
+
+
 
