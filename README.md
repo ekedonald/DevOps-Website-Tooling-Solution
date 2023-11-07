@@ -212,5 +212,27 @@ sudo rsync -av /mnt/logs/ /var/log
 
 * Update `/etc/fstab` file so that the mount configuration will persist after restarting the server. The UUID of the device will be used to update the `/etc/fstab` file. Run the command shown below to get the UUID of the **apps-lv**, **logs-lv** and **opt-lv** logical volumes:
 
+```sh
+sudo blkid
+```
+
+* Update `/etc/fstab` in this format using your own UUID and remember to remove the leading and ending quotes.
+
+```sh
+sudo vi /etc/fstab
+```
+
+* Test the configuration using the command shown below:
+
+```sh
+sudo mount -a
+```
+
+* Reload the daemon using the command shown below:
+
+```sh
+sudo systemctl daemon-reload
+```
+
 ### Step 4: Install and configure the NFS Server.
 
