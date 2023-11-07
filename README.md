@@ -268,6 +268,33 @@ sudo systemctl enable nfs-server.service
 sudo systemctl status nfs-server.service
 ```
 
+* Allow read, write and execute permissions for the Web Servers on the NFS Server.
 
+```sh
+sudo chown -R nobody: /mnt/apps
+sudo chown -R nobody: /mnt/logs
+sudo chown -R nobody: /mnt/opt
 
+sudo chmod -R 777 /mnt/apps
+sudo chmod -R 777 /mnt/logs
+sudo chmod -R 777 /mnt/opt
+```
+
+* Restart thr NFS Server service.
+
+```sh
+sudo systemctl restart nfs-server.service
+```
+
+* Configure access to NFS for clients (_i.e. Web Servers_) within the same subnet (**Subnet CIDR: 172.31.32.0/20**).
+
+```sh
+sudo vi/etc/exports
+```
+
+```sh
+/mnt/apps <Subnet-CIDR>(rw,sync,no_all_squash,no_root_squash)
+/mnt/logs <Subnet-CIDR>(rw,sync,no_all_squash,no_root_squash)
+/mnt/opt <Subnet-CIDR>(rw,sync,no_all_squash,no_root_squash)
+```
 
