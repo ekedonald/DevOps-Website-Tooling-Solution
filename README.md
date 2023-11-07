@@ -78,7 +78,7 @@ chmod 400 <private-key-pair-name>.pem
 * SSH into the NFS Server Instance using the command shown below:
 
 ```sh
-ssh -i <private-key-name>.pem ubuntu@<Public-IP-address>
+ssh -i <private-key-name>.pem ec2-user@<Public-IP-address>
 ```
 
 * Use the `lsblk` command to inspect the block devices attached to the server.
@@ -236,7 +236,7 @@ sudo systemctl daemon-reload
 
 * Verify your setup by running `df -h`
 
-### Step 4: Install and configure the NFS Server.
+### Step 5: Install and configure the NFS Server.
 
 * Update the list of packages in the package manager.
 
@@ -306,4 +306,66 @@ sudo exportfs -arv
 
 ```sh
 rpcinfo -p | grep nfs
+```
+
+### Step 6: Provision a Database Server EC2 Instance
+
+1. Name of Instance: Database Server
+2. AMI: Red Hat Enterprise Linux 9 (HVM), SSD Volume Type
+3. Key Pair Name: web11
+4. New Security Group: Database Server SG
+Inbound Rules: Allow Traffic From Anywhere On Port 22 and Traffic from the Subnet CIDR on Port 3306 (i.e. MySQL).
+
+_Instance Summary for Database Server_
+
+### Step 7: Configure the Backend Database as part of the 3-Tier Architecture
+
+* Open another terminal on your computer.
+
+* Go to the Downloads directory (_i.e. `.pem` key pair is stored here_) using the command shown below:
+
+```sh
+cd Downloads
+```
+
+* SSH into the Database Server Instance using the command shown below:
+
+```sh
+ssh -i <private-key-name>.pem ec2-user@<Public-IP-address>
+```
+
+* Update the list of packages in the package manager.
+
+```sh
+sudo yum update -y
+```
+
+* Install MySQL server.
+
+```sh
+sudo yum install mysql-server -y
+```
+
+* Start the MySQL server.
+
+```sh
+sudo systemctl start mysqld
+```
+
+* Enable MySQL.
+
+```sh
+sudo systemctl enable mysqld
+```
+
+* Check if MySQL service is up and running.
+
+```sh
+sudo systemctl status mysqld
+```
+
+* Log into the MySQL console application.
+
+```sh
+sudo mysql
 ```
