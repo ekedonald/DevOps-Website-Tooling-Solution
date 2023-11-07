@@ -81,5 +81,136 @@ chmod 400 <private-key-pair-name>.pem
 ssh -i <private-key-name>.pem ubuntu@<Public-IP-address>
 ```
 
+* Use the `lsblk` command to inspect the block devices attached to the server.
+
+_Notice the names of the new created devices._
+
+* Use `gdisk` utility to create a single partiton on **/dev/xvdf** disk.
+
+_Note that all the devices in Linux reside in the **/dev** directory_
+
+```sh
+sudo gdisk /dev/xvdf
+```
+
+* Type `n` to create a new partiton and fill in the data shown below into the parameters:
+
+1. Partition number (1-128, default 1): 1
+2. First sector (34-20971486, default = 2048) or {+-}size{KMGTP}: 2048
+3. Last sector (2048-20971486, default = 20971486) or {+-}size{KMGTP}: 20971486
+4. Current type is 8300 (Linux filesystem) Hex code or GUID (l to show codes, Enter = 8300): 8300
+
+* Type `p` to print the partition table of the **/dev/xvdf** device.
+
+* Type `w` to write the table to disk and type `y` to exit.
+
+* Repeat the `gdisk` utility partitioning steps for **/dev/xvdg** and **/dev/xvdh** disks.
+
+* Use the `lsblk` command to view the newly configured partiton on each of the 3 disks.
+
+* Install `lvm2` package using the command shown below:
+
+```sh
+sudo yum install lvm2 -y
+```
+
+* Run the following command to check for available partitons:
+
+```sh
+sudo lvmdiskscan
+```
+
+* Use `pvcreate` utility to mark each of the 3 disks as physical volumes (PVs) to be used  by LVM.
+
+```sh
+sudo pvcreate /dev/xvdf1
+sudo pvcreate /dev/xvdg1
+sudo pvcreate /dev/xvdh1
+```
+
+* Verify that your physical volumes (PVs) have been created successfully by running `sudo pvs`
+
+* Use `vgcreate` utility to add 3 physical volumes (PVs) to a volume group (VG). Name the volume group **webdata-vg**.
+
+```sh
+sudo vgcreate webdata-vg /dev/xvdf1 /dev/xvdg1 /dev/xvdh1
+```
+
+* Verify that your volume group (VG) has been created successfully by running `sudo vgs`
+
+* Use the `lvcreate` utility to create 3 logical volumes: apps-lv (_use a third of the PV size_), logs-lv (_another third of the PV size_) and opt-lv (_the remaining third of the PV size_).
+
+```sh
+sudo lvcreate -n apps-lv -L 9.5G webdata-vg
+sudo lvcreate -n logs-lv -L 9.5G webdata-vg
+sudo lvcreate -n opt-lv -L 9.5G webdata-vg
+```
+
+* Verify that your logical volume (LV) has been created successfully by running `sudo lvs`
+
+* Verify the entire setup by running the following commands:
+
+```sh
+sudo vgdisplay -v #view complete setup - VG, PV, and LV
+```
+
+* Use `mkfs.xfs` to format the logical volumes (LV) with **xfs** file system.
+
+```sh
+sudo mkfs -t xfs /dev/webdata-vg/apps-lv
+```
+
+```sh
+sudo mkfs -t xfs /dev/webdata-vg/logs-lv
+```
+
+```sh
+sudo mkfs -t xfs /dev/webdata-vg/opt-lv
+```
+
+* Create **/mnt/apps** directory to be used by the Web Servers.
+
+```sh
+sudo mkdir -p /mnt/apps
+```
+
+* Create **/mnt/logs** directory to be used by Web Servers log.
+
+```sh
+sudo mkdir -p /mnt/logs
+```
+
+* Create **/mnt/opt** directory to be used by Jenkins Server.
+
+```sh
+sudo mkdir -p /mnt/opt
+```
+
+* Mount **/mnt/apps** on **apps-lv** logical volume.
+
+```sh
+sudo mount /dev/webdata-vg/apps-lv /mnt/apps
+```
+
+* Use `rsync` utility to backup all the files in the log directory **/var/log** into **/mnt/logs** (*This is required before mounting the file system*).
+
+```sh
+sudo rsync -av /var/log/. /mnt/logs
+```
+
+* Mount **/var/log** on **logs-lv** logical volume. (_Note that all the existing data on /var/log will be deleted_).
+
+```sh
+sudo mount /dev/webdata-vg/logs-lv /var/log
+```
+
+* Restore log files back into **/var/log** directory.
+
+```sh
+sudo rsync -av /mnt/logs/ /var/log
+```
+
+* Update `/etc/fstab` file so that the mount configuration will persist after restarting the server. The UUID of the device will be used to update the `/etc/fstab` file. Run the command shown below to get the UUID of the **apps-lv**, **logs-lv** and **opt-lv** logical volumes:
+
 ### Step 4: Install and configure the NFS Server.
 
