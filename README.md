@@ -15,4 +15,12 @@
 
  ## How To Implement a DevOps Tooling Website Solution
  The following steps are taken to implement a DevOps Tooling Website Solution:
- 
+
+ ### Step 1: Provision an NFS Server EC2 Instance
+
+ ### Step 2: Create and Attach 3 Elastic Block Store Volumes to the NFS Server EC2 Instance
+
+ ### Step 3: Implement LVM Storage Management on the NFS Server
+
+ ### Step 4: Install and configure the NFS Server.
+
