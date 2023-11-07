@@ -51,7 +51,35 @@ Use the following parameters when configuring the EC2 Instance:
 
 * Repeat the steps above to create two more EBS Volumes.
 
+_You will see the 3 EBS Volumes you created have an Available Volume state_
+
+* Click on one of the volumes then click on the **Actions** button, you will see a drop-down and click on the **Attach volume** option.
+
+* Select the NFS Server Instance and click on the **Attach volume** button.
+
+* Repeat these steps for the other 2 volumes and you will see that the volumes have been attached to the NFS Server Instance as shown below:
+
 ### Step 4: Implement LVM Storage Management on the NFS Server
+
+* Open terminal on your computer.
+
+* Go to the Downloads directory (_i.e. `.pem` key pair is stored here_) using the command shown below:
+
+```sh
+cd Downloads
+```
+
+* Run the following command to give read permissions to the `.pem` key pair file.
+
+```sh
+chmod 400 <private-key-pair-name>.pem
+```
+
+* SSH into the NFS Server Instance using the command shown below:
+
+```sh
+ssh -i <private-key-name>.pem ubuntu@<Public-IP-address>
+```
 
 ### Step 4: Install and configure the NFS Server.
 
