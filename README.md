@@ -298,3 +298,12 @@ sudo vi/etc/exports
 /mnt/opt <Subnet-CIDR>(rw,sync,no_all_squash,no_root_squash)
 ```
 
+```sh
+sudo exportfs -arv
+```
+
+* Check which port is used by NFS. **Note that Inbound Rules have already been set to allow connections from the client (i.e Web Servers) on the NFS Port (i.e TCP and UDP Ports: 2049 and 111)**.
+
+```sh
+rpcinfo -p | grep nfs
+```
