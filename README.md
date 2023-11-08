@@ -286,7 +286,7 @@ sudo chmod -R 777 /mnt/logs
 sudo chmod -R 777 /mnt/opt
 ```
 
-* Restart thr NFS Server service.
+* Restart the NFS Server service.
 
 ```sh
 sudo systemctl restart nfs-server.service
@@ -295,7 +295,7 @@ sudo systemctl restart nfs-server.service
 * Configure access to NFS for clients (_i.e. Web Servers_) within the same subnet (**Subnet CIDR: 172.31.16.0/20**).
 
 ```sh
-sudo vi/etc/exports
+sudo vi /etc/exports
 ```
 
 ```sh
