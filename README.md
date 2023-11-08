@@ -570,3 +570,26 @@ sudo yum install git -y
 ```sh
 git clone https://github.com/darey-io/tooling.git
 ```
+
+* Deploy the tooling website's code to the Web Server. Ensure that the **html** folder from the repository is deployed to `/var/www/html`
+
+```sh
+cd tooling && ll
+```
+
+```sh
+sudo cp -r html/. /var/www/html/
+```
+
+* Disable SELinux.
+
+```sh
+sudo setenforce 0
+```
+
+* To make this change permanent, open the following configuration file `/etc/sysconfig/selinux` and set `SELINUX=disabled`
+
+```sh
+sudo vi /etc/sysconfig/selinux
+```
+
