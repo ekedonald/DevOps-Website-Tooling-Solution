@@ -442,6 +442,12 @@ sudo mkdir /var/www
 sudo mount -t nfs -o rw, nosuid <NFS-Server-Private_IP-Address>:/mnt/apps /var/www
 ```
 
+* Mount apache's log folder to the NFS server's export for logs.
+
+```sh
+sudo mount -t nfs -o rw, nosuid <NFS-Server-Private_IP-Address>:/mnt/apps /var/log
+```
+
 * Verify that NFS was mounted successfully by running `df -h`
 
 * Make sure that the changes will persist on the Web Server after reboot by updating the `/etc/fstab`
@@ -454,6 +460,7 @@ sudo vi /etc/fstab
 
 ```sh
 <NFS-Server-Private-IP-Address>:/mnt/apps /var/www nfs defaults 0 0
+<NFS-Server-Private-IP-Address>:/mnt/logs /var/log nfs defaults 0 0
 ```
 
 * Test the configuration using the command shown below:
@@ -508,11 +515,13 @@ sudo yum install nfs-utils nfs4-acl-tools -y
 
 sudo mkdir /var/www
 sudo mount -t nfs -o rw,nosuid $nfs_server_private_ip:/mnt/apps /var/www
+sudo mount -t nfs -o rw, nosuid $nfs_server_private_ip:/mnt/apps /var/log
 sudo mount -a
 sudo systemctl daemon-reload
 
 sudo chmod 777 /etc/fstab
 sudo echo "$nfs_server_private_ip:/mnt/apps /var/www nfs defaults 0 0" >> /etc/fstab
+sudo echo "$nfs_server_private_ip:/mnt/logs /var/log/httpd nfs defaults 0 0" >> /etc/fstab
 sudo chmod 644 /etc/fstab
 
 sudo yum install httpd -y
@@ -539,3 +548,25 @@ bash install.sh
 1. On the Web Server 1 Terminal, go to the `/var/www/` directory and create a `test.txt` file in the `/var/www` directory
 
 2. On the NFS Server Terminal, go to the `/mnt/apps` directory and run the `ll` command to view list the files in the directory. You will see that the file `test.txt` file is present.
+
+### Step 10: Fork the tooling source code from [Darey.io GitHub account](https://github.com/darey-io/tooling)
+
+* Check if git in installed on the Web Server using the following command:
+
+```sh
+which git
+```
+
+* Install the git package.
+
+```sh
+sudo yum install git -y
+```
+
+* Go to the [Darey.io Tooling Repository](https://github.com/darey-io/tooling) and copy the highlighted link shown below:
+
+* Clone the repository.
+
+```sh
+git clone https://github.com/darey-io/tooling.git
+```
