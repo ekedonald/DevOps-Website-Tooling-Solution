@@ -593,3 +593,24 @@ sudo setenforce 0
 sudo vi /etc/sysconfig/selinux
 ```
 
+* Update the website's configuration to connect to the Database Server by running the following command:
+
+```sh
+sudo vi /var/www/html/functions.php
+```
+
+* Install MySQL client.
+
+```sh
+sudo yum install mysql -y
+```
+
+* Apply `tooling-db.sql` script to your database using this commands shown below:
+
+```sh
+cd tooling
+```
+
+```sh
+mysql -h <database-private-ip> -u <db-username> -p < tooling-db.sql
+```
