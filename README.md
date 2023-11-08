@@ -445,13 +445,13 @@ sudo mkdir /var/www
 ```
 
 ```sh
-sudo mount -t nfs -o rw, nosuid <NFS-Server-Private_IP-Address>:/mnt/apps /var/www
+sudo mount -t nfs -o rw,nosuid <NFS-Server-Private_IP-Address>:/mnt/apps /var/www
 ```
 
 * Mount apache's log folder to the NFS server's export for logs.
 
 ```sh
-sudo mount -t nfs -o rw, nosuid <NFS-Server-Private_IP-Address>:/mnt/apps /var/log
+sudo mount -t nfs -o rw,nosuid <NFS-Server-Private_IP-Address>:/mnt/apps /var/log
 ```
 
 * Verify that NFS was mounted successfully by running `df -h`
@@ -525,7 +525,7 @@ sudo yum install nfs-utils nfs4-acl-tools -y
 
 sudo mkdir /var/www
 sudo mount -t nfs -o rw,nosuid $nfs_server_private_ip:/mnt/apps /var/www
-sudo mount -t nfs -o rw, nosuid $nfs_server_private_ip:/mnt/apps /var/log
+sudo mount -t nfs -o rw,nosuid $nfs_server_private_ip:/mnt/apps /var/log
 sudo mount -a
 sudo systemctl daemon-reload
 
