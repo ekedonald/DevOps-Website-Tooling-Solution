@@ -519,7 +519,7 @@ sudo vi install.sh
 #!/bin/bash
 
 # input the Private IPv4 of your NFS Server
-nfs_server_private_ip=172.31.45.196
+nfs_server_private_ip=172.31.26.52
 
 sudo yum install nfs-utils nfs4-acl-tools -y
 
