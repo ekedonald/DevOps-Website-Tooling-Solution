@@ -410,7 +410,7 @@ SHOW DATABASES;
 
 ### Step 8: Provision 3 Web Servers EC2 Instances
 
-1. Name of Instance: Database Server
+1. Name of Instance: Web Server 1 (_change the names of the other two Instances to Web Server 2 and Web Server 3_)
 2. AMI: Red Hat Enterprise Linux 9 (HVM), SSD Volume Type
 3. Key Pair Name: web11
 4. New Security Group: Web Server SG
