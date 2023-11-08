@@ -451,7 +451,7 @@ sudo mount -t nfs -o rw,nosuid <NFS-Server-Private_IP-Address>:/mnt/apps /var/ww
 * Mount apache's log folder to the NFS server's export for logs.
 
 ```sh
-sudo mount -t nfs -o rw,nosuid <NFS-Server-Private_IP-Address>:/mnt/apps /var/log
+sudo mount -t nfs -o rw,nosuid <NFS-Server-Private_IP-Address>:/mnt/logs /var/log
 ```
 
 * Verify that NFS was mounted successfully by running `df -h`
