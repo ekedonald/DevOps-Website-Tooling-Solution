@@ -34,7 +34,7 @@ Use the following parameters when configuring the EC2 Instance:
 
 * Copy the Subnet IPv4 CIDR address.
 
-* Add rules that allow connections from the Subnet CIDR on TCP Port 2049, TCP Port Port 111, UDP Port 2049 and UDP Port 111.
+* Add rules that allow connections from the Subnet CIDR (_i.e. **172.31.16.0/20**_) on TCP Port 2049, TCP Port Port 111, UDP Port 2049 and UDP Port 111.
 
 ### Step 3: Create and Attach 3 Elastic Block Store Volumes to the NFS Server EC2 Instance
 
@@ -292,7 +292,7 @@ sudo chmod -R 777 /mnt/opt
 sudo systemctl restart nfs-server.service
 ```
 
-* Configure access to NFS for clients (_i.e. Web Servers_) within the same subnet (**Subnet CIDR: 172.31.32.0/20**).
+* Configure access to NFS for clients (_i.e. Web Servers_) within the same subnet (**Subnet CIDR: 172.31.16.0/20**).
 
 ```sh
 sudo vi/etc/exports
