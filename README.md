@@ -192,6 +192,12 @@ sudo mkdir -p /mnt/opt
 sudo mount /dev/webdata-vg/apps-lv /mnt/apps
 ```
 
+* Mount **/mnt/opt** on **opt-lv** logical volume.
+
+```sh
+sudo mount /dev/webdata-vg/opt-lv /mnt/opt
+```
+
 * Use `rsync` utility to backup all the files in the log directory **/var/log** into **/mnt/logs** (*This is required before mounting the file system*).
 
 ```sh
