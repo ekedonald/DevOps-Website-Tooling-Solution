@@ -495,6 +495,10 @@ sudo systemctl start php-fpm
 sudo systemctl enable php-fpm
 
 sudo setsebool -P httpd_execmem 1
+
+sudo systemctl start httpd
+
+sudo systemctl enable httpd
 ```
 
 * Open two terminals and SSH into Web Server 2 and Web Server 3 EC2 Instances and run the following command to configure the two Web Servers:
