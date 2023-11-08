@@ -346,13 +346,13 @@ sudo yum update -y
 sudo yum install mysql-server -y
 ```
 
-* Start the MySQL server.
+* Start the MySQL service.
 
 ```sh
 sudo systemctl start mysqld
 ```
 
-* Enable MySQL.
+* Enable the MySQL service.
 
 ```sh
 sudo systemctl enable mysqld
@@ -369,3 +369,173 @@ sudo systemctl status mysqld
 ```sh
 sudo mysql
 ```
+
+* Create a database called `tooling`.
+
+```sh
+CREATE DATABASE tooling;
+```
+
+* Create a new user.
+
+```sh
+CREATE USER 'myuser'@'<Subnet_CIDR' IDENTIFIED BY 'password';
+```
+
+* Grant all privileges on the `tooling`database to the user created.
+
+```sh
+GRANT ALL ON tooling.* TO 'myuser'*'<Subnet_CIDR';
+```
+
+* Run the following command to apply and make changes effective.
+
+```sh
+FLUSH PRIVILEGES;
+```
+
+* Display all the databases.
+
+```sh
+SHOW DATABASES;
+```
+
+* Exit the MySQL console.
+
+### Step 8: Provision 3 Web Servers EC2 Instances
+
+1. Name of Instance: Database Server
+2. AMI: Red Hat Enterprise Linux 9 (HVM), SSD Volume Type
+3. Key Pair Name: web11
+4. New Security Group: Web Server SG
+Inbound Rules: Allow Traffic From Anywhere On Port 22 and Port 80
+
+### Step 9: Configure the Web Servers
+
+* Open another terminal on your computer.
+
+* Go to the Downloads directory (_i.e. `.pem` key pair is stored here_) using the command shown below:
+
+```sh
+cd Downloads
+```
+
+* SSH into the Database Server Instance using the command shown below:
+
+```sh
+ssh -i <private-key-name>.pem ec2-user@<Public-IP-address>
+```
+
+* Install NFS Client
+
+```sh
+sudo yum install nfs-utils nfs4-acl-tools -y
+```
+
+* Mount `/var/www` and target the NFS server's export for apps.
+
+```sh
+sudo mkdir /var/www
+```
+
+```sh
+sudo mount -t nfs -o rw, nosuid <NFS-Server-Private_IP-Address>:/mnt/apps /var/www
+```
+
+* Verify that NFS was mounted successfully by running `df -h`
+
+* Make sure that the changes will persist on the Web Server after reboot by updating the `/etc/fstab`
+
+```sh
+sudo vi /etc/fstab
+```
+
+* Add the following line then save and exit the file:
+
+```sh
+<NFS-Server-Private-IP-Address>:/mnt/apps /var/www nfs defaults 0 0
+```
+
+* Test the configuration using the command shown below:
+
+```sh
+sudo mount -a
+```
+
+* Reload the daemon using the command shown below:
+
+```sh
+sudo systemctl daemon-reload
+```
+
+* Install [Remi's repository](http://www.servermom.org/how-to-enable-remi-repo-on-centos-7-6-and-5/2790/), Apache and PHP
+
+```sh
+sudo yum install httpd -y
+
+sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y
+
+sudo dnf install dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
+
+sudo dnf module reset php
+
+sudo dnf module enable php:remi-7.4
+
+sudo dnf install php php-opcache php-gd php-curl php-mysqlnd -y
+
+sudo systemctl start php-fpm
+
+sudo systemctl enable php-fpm
+
+sudo setsebool -P httpd_execmem 1
+```
+
+* Open two terminals and SSH into Web Server 2 and Web Server 3 EC2 Instances and run the following command to configure the two Web Servers:
+
+```sh
+sudo vi install.sh
+```
+
+* Paste the codebase below then save and exit the file.
+
+```sh
+#!/bin/bash
+
+# input the Private IPv4 of your NFS Server
+nfs_server_private_ip=172.31.45.196
+
+sudo yum install nfs-utils nfs4-acl-tools -y
+
+sudo mkdir /var/www
+sudo mount -t nfs -o rw,nosuid $nfs_server_private_ip:/mnt/apps /var/www
+sudo mount -a
+sudo systemctl daemon-reload
+
+sudo chmod 777 /etc/fstab
+sudo echo "$nfs_server_private_ip:/mnt/apps /var/www nfs defaults 0 0" >> /etc/fstab
+sudo chmod 644 /etc/fstab
+
+sudo yum install httpd -y
+sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y
+sudo dnf install dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
+sudo dnf module reset php
+sudo dnf module enable php:remi-7.4
+sudo dnf install php php-opcache php-gd php-curl php-mysqlnd -y
+sudo systemctl start php-fpm
+sudo systemctl enable php-fpm
+sudo setsebool -P httpd_execmem 1
+sudo systemctl start httpd
+sudo systemctl enable httpd
+```
+
+* Run the following command to run the `install.sh` script.
+
+```sh
+bash install.sh
+```
+
+* Verify that apache files and directories are available on Web Servers in `/var/www` and also on the NFS server in `/mnt/apps`. If you see the same files, it means NFS is mounted correctly. Verification can be done by taking the following steps:
+
+1. On the Web Server 1 Terminal, go to the `/var/www/` directory and create a `test.txt` file in the `/var/www` directory
+
+2. On the NFS Server Terminal, go to the `/mnt/apps` directory and run the `ll` command to view list the files in the directory. You will see that the file `test.txt` file is present.
