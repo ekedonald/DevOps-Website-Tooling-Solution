@@ -559,7 +559,7 @@ bash install.sh
 
 2. On the NFS Server Terminal, go to the `/mnt/apps` directory and run the `ll` command to view list the files in the directory. You will see that the file `test.txt` file is present.
 
-### Step 10: Fork the tooling source code from [Darey.io GitHub account](https://github.com/darey-io/tooling)
+* Fork the tooling source code from [Darey.io GitHub account](https://github.com/darey-io/tooling)
 
 * Check if git in installed on the Web Server using the following command:
 
@@ -625,14 +625,14 @@ cd tooling
 mysql -h <database-private-ip> -u <db-username> -p tooling < tooling-db.sql
 ```
 
-### Step 11: Create a new admin user on your Database Server
+### Step 10: Create a new admin user on your Database Server
 
 * Connect to the Database Server Instance.
 
 * Log into the console application.
 
 ```sh
-sydo mysql
+sudo mysql
 ```
 
 * Display all the databases.
@@ -668,7 +668,7 @@ INSERT INTO users (id, username, password, email, user_type, status)
 
 * Exit the console application.
 
-### Step 12: Start and Enable Apache on the Web Server.
+### Step 11: Start and Enable Apache on the Web Server.
 
 * Connect to the Web Server 1 Instance.
 
@@ -696,11 +696,10 @@ sudo systemctl enable httpd
 sudo systemctl status httpd
 ```
 
-### Step 13: Open the website in your browser
+### Step 12: Open the tooling website in your browser
 
 * Go to your browser and paste the following URL:
 
 ```sh
 http://<Private_IP-Address_Web_Server_1>
 ```
-
