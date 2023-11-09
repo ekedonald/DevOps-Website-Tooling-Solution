@@ -667,3 +667,25 @@ INSERT INTO users (id, username, password, email, user_type, status)
 ```
 
 * Exit the console application.
+
+### Step 12: Start and Enable Apache on Web Server.
+
+* Connect to the Web Server 1 Instance.
+
+* Run the following command to test if you can connect to the tooling website:
+
+```sh
+curl localhost
+```
+
+* Start the apache service.
+
+```sh
+sudo systemctl start httpd
+```
+
+* Enable the apache service.
+
+```sh
+sudo systemctl enable httpd
+```
