@@ -627,6 +627,8 @@ mysql -h <database-private-ip> -u <db-username> -p tooling < tooling-db.sql
 
 ### Step 11: Create a new admin user on your Database Server
 
+* Connect to the Database Server Instance.
+
 * Log into the console application.
 
 ```sh
@@ -663,3 +665,5 @@ SELECT * FROM users;
 INSERT INTO users (id, username, password, email, user_type, status)
 -> VALUES (2, 'donald', '5f4dcc3b5aa765d61d8327deb882cf99', 'user@mail.com', 'admin', '1')
 ```
+
+* Exit the console application.
