@@ -647,3 +647,13 @@ USE tooling;
 
 * Display the tables in the `tooling` database.
 
+```sh
+SHOW TABLES;
+```
+
+* Display all the contents of the `users` table.
+
+```sh
+SELECT * FROM users;
+```
+
