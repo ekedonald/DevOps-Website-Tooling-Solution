@@ -668,7 +668,7 @@ INSERT INTO users (id, username, password, email, user_type, status)
 
 * Exit the console application.
 
-### Step 12: Start and Enable Apache on Web Server.
+### Step 12: Start and Enable Apache on the Web Server.
 
 * Connect to the Web Server 1 Instance.
 
@@ -689,3 +689,18 @@ sudo systemctl start httpd
 ```sh
 sudo systemctl enable httpd
 ```
+
+* Check if the apache service is up and running.
+
+```sh
+sudo systemctl status httpd
+```
+
+### Step 13: Open the website in your browser
+
+* Go to your browser and paste the following URL:
+
+```sh
+http://<Private_IP-Address_Web_Server_1>
+```
+
