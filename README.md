@@ -622,7 +622,28 @@ cd tooling
 ```
 
 ```sh
-mysql -h <database-private-ip> -u <db-username> -p < tooling-db.sql
+mysql -h <database-private-ip> -u <db-username> -p tooling< tooling-db.sql
 ```
 
-### Step 11:
+### Step 11: Create a new admin user on your Database Server
+
+* Log into the console application.
+
+```sh
+sydo mysql
+```
+
+* Display all the databases.
+
+```sh
+SHOW DATABASES;
+```
+
+* Select the `tooling` database you want to work on.
+
+```sh
+USE tooling;
+```
+
+* Display the tables in the `tooling` database.
+
