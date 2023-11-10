@@ -38,7 +38,7 @@ Use the following parameters when configuring the EC2 Instance:
 
 ### Step 3: Create and Attach 3 Elastic Block Store Volumes to the NFS Server EC2 Instance
 
-* On the Instances tab, notice the **Availabilty Zone (i.e. us-east-1d)** of the NFS Server Instance. This will be used to configure the 3 EBS Volumes.
+* On the Instances tab, notice the **Availabilty Zone (i.e. us-east-1c)** of the NFS Server Instance. This will be used to configure the 3 EBS Volumes.
 
 * On the EC2 dashboard, click on the **Volumes** on the Elastic Block Store tab.
 
@@ -47,7 +47,7 @@ Use the following parameters when configuring the EC2 Instance:
 * Give the EBS Volume the following parameters and click on the **create volume** button:
 
 1. Size (GiB): 10
-2. Availability Zone: us-east-1d (_Note that the Availability Zone you select must match the Availability zone of the NFS Server Instance_)
+2. Availability Zone: us-east-1c (_Note that the Availability Zone you select must match the Availability zone of the NFS Server Instance_)
 
 * Repeat the steps above to create two more EBS Volumes.
 
