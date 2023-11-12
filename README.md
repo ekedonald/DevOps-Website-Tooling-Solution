@@ -415,13 +415,15 @@ sudo vi /etc/exports
 sudo exportfs -arv
 ```
 
-
+![exportfs -arv](./images/5.%20sudo%20exports%20-arv.png)
 
 * Check which port is used by NFS. **Note that Inbound Rules have already been set to allow connections from the client (i.e Web Servers) on the NFS Port (i.e TCP and UDP Ports: 2049 and 111)**.
 
 ```sh
 rpcinfo -p | grep nfs
 ```
+
+![rpcinfo -p](./images/5.%20rpcinfo%20-p.png)
 
 ### Step 6: Provision a Database Server EC2 Instance
 
