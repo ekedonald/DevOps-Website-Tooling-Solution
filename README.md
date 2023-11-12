@@ -502,11 +502,15 @@ sudo systemctl status mysqld
 sudo mysql
 ```
 
+![sudo mysql](./images/7.%20sudo%20mysql.png)
+
 * Create a database called `tooling`.
 
 ```sh
 CREATE DATABASE tooling;
 ```
+
+![create database](./images/7.%20create%20database.png)
 
 * Create a new user.
 
@@ -514,11 +518,15 @@ CREATE DATABASE tooling;
 CREATE USER 'myuser'@'<Subnet_CIDR' IDENTIFIED BY 'password';
 ```
 
+![create user](./images/7.%20create%20user.png)
+
 * Grant all privileges on the `tooling`database to the user created.
 
 ```sh
 GRANT ALL ON tooling.* TO 'myuser'*'<Subnet_CIDR';
 ```
+
+![grant all](./images/7.%20grant%20all.png)
 
 * Run the following command to apply and make changes effective.
 
@@ -526,13 +534,19 @@ GRANT ALL ON tooling.* TO 'myuser'*'<Subnet_CIDR';
 FLUSH PRIVILEGES;
 ```
 
+![flush privileges](./images/7.%20flush%20privileges.png)
+
 * Display all the databases.
 
 ```sh
 SHOW DATABASES;
 ```
 
+![show databases](./images/7.%20show%20databases.png)
+
 * Exit the MySQL console.
+
+![exit mysql](./images/7.%20exit.png)
 
 ### Step 8: Provision 3 Web Servers EC2 Instances
 
@@ -541,6 +555,9 @@ SHOW DATABASES;
 3. Key Pair Name: web11
 4. New Security Group: Web Server SG
 Inbound Rules: Allow Traffic From Anywhere On Port 22 and Port 80
+
+![web server instance summary](./images/8.%20web%20server%20instance%20summary.png)
+_Instance Summary for Web Server 1_
 
 ### Step 9: Configure the Web Servers
 
@@ -552,11 +569,15 @@ Inbound Rules: Allow Traffic From Anywhere On Port 22 and Port 80
 cd Downloads
 ```
 
+![cd downloads](./images/9.%20cd%20downloads.png)
+
 * SSH into the Database Server Instance using the command shown below:
 
 ```sh
 ssh -i <private-key-name>.pem ec2-user@<Public-IP-address>
 ```
+
+![ssh web server](./images/9.%20ssh%20web%20server.png)
 
 * Install NFS Client
 
