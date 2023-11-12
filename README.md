@@ -446,11 +446,15 @@ _Instance Summary for Database Server_
 cd Downloads
 ```
 
+![cd downloads](./images/7.%20cd%20downloads.png)
+
 * SSH into the Database Server Instance using the command shown below:
 
 ```sh
 ssh -i <private-key-name>.pem ec2-user@<Public-IP-address>
 ```
+
+![ssh database](./images/7.%20ssh%20keypair.png)
 
 * Update the list of packages in the package manager.
 
@@ -458,11 +462,15 @@ ssh -i <private-key-name>.pem ec2-user@<Public-IP-address>
 sudo yum update -y
 ```
 
+![yum update](./images/7.%20yum%20update.png)
+
 * Install MySQL server.
 
 ```sh
 sudo yum install mysql-server -y
 ```
+
+![install mysql-server](./images/7.%20install%20mysql-server.png)
 
 * Start the MySQL service.
 
