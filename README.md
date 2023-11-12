@@ -287,7 +287,7 @@ sudo rsync -av /var/log/. /mnt/logs
 sudo mount /dev/webdata-vg/logs-lv /var/log
 ```
 
-![mount logs-lv](./images/9.%20mount%20-t%20nfs%20:mnt:logs%20:var:log.png)
+![mount logs-lv](./images/4.%20mount%20logs-lv%20:var:log.png)
 
 * Restore log files back into **/var/log** directory.
 
