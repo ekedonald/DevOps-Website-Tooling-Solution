@@ -433,6 +433,7 @@ rpcinfo -p | grep nfs
 4. New Security Group: Database Server SG
 Inbound Rules: Allow Traffic From Anywhere On Port 22 and Traffic from the Subnet CIDR on Port 3306 (i.e. MySQL).
 
+![database server instance summary](./images/6.%20database%20server%20instance%20summary.png)
 _Instance Summary for Database Server_
 
 ### Step 7: Configure the Backend Database as part of the 3-Tier Architecture
