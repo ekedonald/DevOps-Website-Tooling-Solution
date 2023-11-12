@@ -156,11 +156,15 @@ sudo gdisk /dev/xvdf
 sudo yum install lvm2 -y
 ```
 
+![install lvm2](./images/4.%20install%20lvm2.png)
+
 * Run the following command to check for available partitons:
 
 ```sh
 sudo lvmdiskscan
 ```
+
+![lvmdiskscan](./images/4.%20lvmdiskscan.png)
 
 * Use `pvcreate` utility to mark each of the 3 disks as physical volumes (PVs) to be used  by LVM.
 
@@ -169,6 +173,8 @@ sudo pvcreate /dev/xvdf1
 sudo pvcreate /dev/xvdg1
 sudo pvcreate /dev/xvdh1
 ```
+
+![pvcreate](./images/4.%20pvcreate%20xvdf1%20xvdg1.png)
 
 * Verify that your physical volumes (PVs) have been created successfully by running `sudo pvs`
 
