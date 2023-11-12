@@ -9,6 +9,9 @@
 
 On the diagram below, you can see a common pattern where several stateless Web Servers share a common database and also access the same files using [Network File System (NFS)](https://en.wikipedia.org/wiki/Network_File_System) as a shared file storage. Even though the NFS server might be located on a completely seperate hardware (_i.e. for Web Servers it will look like a local file system from where they can serve the same files_).
 
+![3-tier web application architecture](./images/0.%203-Tier%20Web%20Application%20Architecture.png)
+_3-Tier Web Application Architecture with a single Database and an NFS Server as a shared files storage_
+
 It is important to know what storage solution is suitable for certain use cases. To determine this, you need to answer the following questions: **what data will be stored, in what format, how this data will be accessed, by whom, from where and how frequently**. 
  
 Based on this you will be able to choose the right storage system for your solution.
@@ -28,11 +31,16 @@ Use the following parameters when configuring the EC2 Instance:
 6. New Security Group: NFS Server SG
 7. Inbound Rules: Allow Traffic From Anywhere On Port 22
 
+![NFS Server Instance Summary](./images/1.%20nfs%20server%20instance%20summary.png)
+_Instance Summary for NFS Server_
+
 ### Step 2: Set additional Inbound Rules to allow connections from the NFS Clients (i.e. The 3 Web Servers) on the NFS Port.
 
 * On the Instance Summary for the NFS Server shown above, click on the Subnet ID.
 
 * Copy the Subnet IPv4 CIDR address.
+
+![Subnet IPv4 CIDR address](./images/2.%20subnet%20ipv4%20cidr%20address.png)
 
 * Add rules that allow connections from the Subnet CIDR (_i.e. **172.31.16.0/20**_) on TCP Port 2049, TCP Port Port 111, UDP Port 2049 and UDP Port 111.
 
