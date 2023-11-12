@@ -341,11 +341,15 @@ sudo systemctl daemon-reload
 sudo yum -y update
 ```
 
+![yum update](./images/5.%20yum%20update.png)
+
 * Install the NFS Server package.
 
 ```sh
 sudo yum install nfs-utils -y
 ```
+
+![install nfs-utils](./images/5.%20yum%20install%20nfs-utils.png)
 
 * Start the NFS Server service.
 
