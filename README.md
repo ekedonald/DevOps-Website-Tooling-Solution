@@ -44,28 +44,45 @@ _Instance Summary for NFS Server_
 
 * Add rules that allow connections from the Subnet CIDR (_i.e. **172.31.16.0/20**_) on TCP Port 2049, TCP Port Port 111, UDP Port 2049 and UDP Port 111.
 
+![inbound rules nfs server](./images/2.%20edit%20inbound%20rules.png)
+
 ### Step 3: Create and Attach 3 Elastic Block Store Volumes to the NFS Server EC2 Instance
 
 * On the Instances tab, notice the **Availabilty Zone (i.e. us-east-1c)** of the NFS Server Instance. This will be used to configure the 3 EBS Volumes.
 
+![availabilty zone](./images/3.%20availability%20zone.png)
+
 * On the EC2 dashboard, click on the **Volumes** on the Elastic Block Store tab.
 
+![ebs volumes tab](./images/3.%20volumes%20tab.png)
+
 * Click on the Create Volume button.
+
+![create volume](./images/3.%20create%20volume%20button.png)
 
 * Give the EBS Volume the following parameters and click on the **create volume** button:
 
 1. Size (GiB): 10
 2. Availability Zone: us-east-1c (_Note that the Availability Zone you select must match the Availability zone of the NFS Server Instance_)
 
+![ebs parameters](./images/3.%20ebs%20volume%20parameters.png)
+
 * Repeat the steps above to create two more EBS Volumes.
 
+![created volumes](./images/3.%20ebs%20volumes%20created.png)
 _You will see the 3 EBS Volumes you created have an Available Volume state_
 
 * Click on one of the volumes then click on the **Actions** button, you will see a drop-down and click on the **Attach volume** option.
 
+![attach volumes](./images/3.%20attach%20volume.png)
+
 * Select the NFS Server Instance and click on the **Attach volume** button.
 
+![select nfs and attach volume](./images/3.%20select%20nfs%20and%20attach%20volume.png)
+
 * Repeat these steps for the other 2 volumes and you will see that the volumes have been attached to the NFS Server Instance as shown below:
+
+![attached volumes](./images/3.%20attached%20volumes.png)
 
 ### Step 4: Implement LVM Storage Management on the NFS Server
 
