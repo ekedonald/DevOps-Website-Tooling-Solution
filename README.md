@@ -311,11 +311,15 @@ sudo blkid
 sudo vi /etc/fstab
 ```
 
+![vi /etc/fstab](./images/4.%20vi%20:etc:fstab.png)
+
 * Test the configuration using the command shown below:
 
 ```sh
 sudo mount -a
 ```
+
+![mount -a](./images/4.%20mount%20-a.png)
 
 * Reload the daemon using the command shown below:
 
@@ -323,7 +327,11 @@ sudo mount -a
 sudo systemctl daemon-reload
 ```
 
+![daemon-reload](./images/9.%20daemon-reload.png)
+
 * Verify your setup by running `df -h`
+
+![df -h](./images/4.%20df%20-h1.png)
 
 ### Step 5: Install and configure the NFS Server.
 
