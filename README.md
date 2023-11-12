@@ -478,17 +478,23 @@ sudo yum install mysql-server -y
 sudo systemctl start mysqld
 ```
 
+![start mysqld](./images/7.%20start%20mysqld.png)
+
 * Enable the MySQL service.
 
 ```sh
 sudo systemctl enable mysqld
 ```
 
+![enable mysqld](./images/7.%20enable%20mysqld.png)
+
 * Check if MySQL service is up and running.
 
 ```sh
 sudo systemctl status mysqld
 ```
+
+![status mysqld](./images/7.%20start%20mysqld.png)
 
 * Log into the MySQL console application.
 
