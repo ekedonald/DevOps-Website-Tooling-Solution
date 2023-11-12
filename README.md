@@ -219,14 +219,19 @@ sudo vgdisplay -v #view complete setup - VG, PV, and LV
 ```sh
 sudo mkfs -t xfs /dev/webdata-vg/apps-lv
 ```
+![mkfs apps-lv](./images/4.%20mkfs%20-t%20apps-lv.png)
 
 ```sh
 sudo mkfs -t xfs /dev/webdata-vg/logs-lv
 ```
 
+![mkfs logs-lv](./images/4.%20mkfs%20-t%20log-lv.png)
+
 ```sh
 sudo mkfs -t xfs /dev/webdata-vg/opt-lv
 ```
+
+![mkfs opt-lv](./images/4.%20mkfs%20-t%20opt-lv.png)
 
 * Create **/mnt/apps** directory to be used by the Web Servers.
 
