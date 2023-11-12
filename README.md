@@ -357,17 +357,23 @@ sudo yum install nfs-utils -y
 sudo systemctl start nfs-server.service
 ```
 
+![start nfs](./images/5.%20start%20nfs%20service.png)
+
 * Enable the NFS Server service.
 
 ```sh
 sudo systemctl enable nfs-server.service
 ```
 
+![enable nfs](./images/5.%20enable%20nfs%20service.png)
+
 * Check the status of the NFS Server service.
 
 ```sh
 sudo systemctl status nfs-server.service
 ```
+
+![status nfs](./images/5.%20status%20nfs%20service.png)
 
 * Allow read, write and execute permissions for the Web Servers on the NFS Server.
 
@@ -381,11 +387,15 @@ sudo chmod -R 777 /mnt/logs
 sudo chmod -R 777 /mnt/opt
 ```
 
+![chmod -R nobody](./images/5.%20chown%20-R%20nobody.png)
+
 * Restart the NFS Server service.
 
 ```sh
 sudo systemctl restart nfs-server.service
 ```
+
+![restart nfs](./images/5.%20restart%20nfs%20service.png)
 
 * Configure access to NFS for clients (_i.e. Web Servers_) within the same subnet (**Subnet CIDR: 172.31.16.0/20**).
 
@@ -399,9 +409,13 @@ sudo vi /etc/exports
 /mnt/opt <Subnet-CIDR>(rw,sync,no_all_squash,no_root_squash)
 ```
 
+![vi /etc/exports](./images/5.%20vi%20:etc:exports.png)
+
 ```sh
 sudo exportfs -arv
 ```
+
+
 
 * Check which port is used by NFS. **Note that Inbound Rules have already been set to allow connections from the client (i.e Web Servers) on the NFS Port (i.e TCP and UDP Ports: 2049 and 111)**.
 
