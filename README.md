@@ -94,11 +94,15 @@ _You will see the 3 EBS Volumes you created have an Available Volume state_
 cd Downloads
 ```
 
+![cd downloads](./images/4.%20cd%20downloads.png)
+
 * Run the following command to give read permissions to the `.pem` key pair file.
 
 ```sh
 chmod 400 <private-key-pair-name>.pem
 ```
+
+![chmod private key](./images/4.%20chmod%20keypair.png)
 
 * SSH into the NFS Server Instance using the command shown below:
 
@@ -106,8 +110,11 @@ chmod 400 <private-key-pair-name>.pem
 ssh -i <private-key-name>.pem ec2-user@<Public-IP-address>
 ```
 
+![ssh nfs server](./images/4.%20ssh%20private%20key.png)
+
 * Use the `lsblk` command to inspect the block devices attached to the server.
 
+![lsblk](./images/4.%20lsblk1.png)
 _Notice the names of the new created devices._
 
 * Use `gdisk` utility to create a single partiton on **/dev/xvdf** disk.
@@ -118,7 +125,11 @@ _Note that all the devices in Linux reside in the **/dev** directory_
 sudo gdisk /dev/xvdf
 ```
 
+![gdisk](./images/4.%20gdisk%20xvdf.png)
+
 * Type `n` to create a new partiton and fill in the data shown below into the parameters:
+
+![n](./images/4.%20n%20partition.png)
 
 1. Partition number (1-128, default 1): 1
 2. First sector (34-20971486, default = 2048) or {+-}size{KMGTP}: 2048
@@ -127,11 +138,17 @@ sudo gdisk /dev/xvdf
 
 * Type `p` to print the partition table of the **/dev/xvdf** device.
 
+![p](./images/4.%20p%20partition.png)
+
 * Type `w` to write the table to disk and type `y` to exit.
+
+![w y](./images/4.%20w%20and%20y.png)
 
 * Repeat the `gdisk` utility partitioning steps for **/dev/xvdg** and **/dev/xvdh** disks.
 
 * Use the `lsblk` command to view the newly configured partiton on each of the 3 disks.
+
+![lsblk2](./images/4.%20lsblk2.png)
 
 * Install `lvm2` package using the command shown below:
 
