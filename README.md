@@ -239,11 +239,15 @@ sudo mkfs -t xfs /dev/webdata-vg/opt-lv
 sudo mkdir -p /mnt/apps
 ```
 
+![mkdir mnt/apps](./images/4.%20mkdir%20mnt:apps.png)
+
 * Create **/mnt/logs** directory to be used by Web Servers log.
 
 ```sh
 sudo mkdir -p /mnt/logs
 ```
+
+![mkdir mnt/logs](./images/4.%20mkdir%20:mnt:logs.png)
 
 * Create **/mnt/opt** directory to be used by Jenkins Server.
 
@@ -251,11 +255,15 @@ sudo mkdir -p /mnt/logs
 sudo mkdir -p /mnt/opt
 ```
 
+![mkdir mnt/opt](./images/4.%20mkdir%20:mnt:opt.png)
+
 * Mount **/mnt/apps** on **apps-lv** logical volume.
 
 ```sh
 sudo mount /dev/webdata-vg/apps-lv /mnt/apps
 ```
+
+![mount apps-lv mnt/apps](./images/4.%20mount%20:dev:webdata:apps%20:mnt:apps.png)
 
 * Mount **/mnt/opt** on **opt-lv** logical volume.
 
@@ -263,11 +271,15 @@ sudo mount /dev/webdata-vg/apps-lv /mnt/apps
 sudo mount /dev/webdata-vg/opt-lv /mnt/opt
 ```
 
+![mount opt-lv /mnt/opt](./images/4.%20mount%20opts-lv%20:mnt:opt.png)
+
 * Use `rsync` utility to backup all the files in the log directory **/var/log** into **/mnt/logs** (*This is required before mounting the file system*).
 
 ```sh
 sudo rsync -av /var/log/. /mnt/logs
 ```
+
+![rsync /var/log /mnt/logs](./images/4.%20sudo%20rsync%20:var:log%20:mnt:logs.png)
 
 * Mount **/var/log** on **logs-lv** logical volume. (_Note that all the existing data on /var/log will be deleted_).
 
@@ -275,17 +287,23 @@ sudo rsync -av /var/log/. /mnt/logs
 sudo mount /dev/webdata-vg/logs-lv /var/log
 ```
 
+![mount logs-lv](./images/9.%20mount%20-t%20nfs%20:mnt:logs%20:var:log.png)
+
 * Restore log files back into **/var/log** directory.
 
 ```sh
 sudo rsync -av /mnt/logs/ /var/log
 ```
 
+![rysnc /mnt/logs /var/log](./images/4.%20rsync%20:mnt:logs%20:var:log.png)
+
 * Update `/etc/fstab` file so that the mount configuration will persist after restarting the server. The UUID of the device will be used to update the `/etc/fstab` file. Run the command shown below to get the UUID of the **apps-lv**, **logs-lv** and **opt-lv** logical volumes:
 
 ```sh
 sudo blkid
 ```
+
+![blkid](./images/4.%20sudo%20blkid.png)
 
 * Update `/etc/fstab` in this format using your own UUID and remember to remove the leading and ending quotes.
 
