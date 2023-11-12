@@ -178,13 +178,19 @@ sudo pvcreate /dev/xvdh1
 
 * Verify that your physical volumes (PVs) have been created successfully by running `sudo pvs`
 
+![pvs](./images/4.%20sudo%20pvs.png)
+
 * Use `vgcreate` utility to add 3 physical volumes (PVs) to a volume group (VG). Name the volume group **webdata-vg**.
 
 ```sh
 sudo vgcreate webdata-vg /dev/xvdf1 /dev/xvdg1 /dev/xvdh1
 ```
 
+![vgcreate](./images/4.%20vgcreate%20webdata.png)
+
 * Verify that your volume group (VG) has been created successfully by running `sudo vgs`
+
+![vgs](./images/4.%20sudo%20vgs.png)
 
 * Use the `lvcreate` utility to create 3 logical volumes: apps-lv (_use a third of the PV size_), logs-lv (_another third of the PV size_) and opt-lv (_the remaining third of the PV size_).
 
@@ -194,13 +200,19 @@ sudo lvcreate -n logs-lv -L 9.5G webdata-vg
 sudo lvcreate -n opt-lv -L 9.5G webdata-vg
 ```
 
+![lvcreate](./images/4.%20lvcreate.png)
+
 * Verify that your logical volume (LV) has been created successfully by running `sudo lvs`
+
+![lvs](./images/4.%20sudo%20lvs.png)
 
 * Verify the entire setup by running the following commands:
 
 ```sh
 sudo vgdisplay -v #view complete setup - VG, PV, and LV
 ```
+
+![vgdisplay](./images/4.%20sudo%20vgdisplay.png)
 
 * Use `mkfs.xfs` to format the logical volumes (LV) with **xfs** file system.
 
