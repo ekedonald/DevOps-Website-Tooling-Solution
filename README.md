@@ -921,4 +921,6 @@ sudo systemctl status httpd
 http://<Private_IP-Address_Web_Server_1>
 ```
 
+![url1](./images/12.%20url1.png)
 
+![url2](./images/12.%20url2.png)
