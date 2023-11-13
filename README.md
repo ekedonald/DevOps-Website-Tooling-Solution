@@ -611,6 +611,8 @@ sudo mount -t nfs -o rw,nosuid <NFS-Server-Private_IP-Address>:/mnt/logs /var/lo
 
 * Verify that NFS was mounted successfully by running `df -h`
 
+![df -h](./images/9.%20df%20-h.png)
+
 * Make sure that the changes will persist on the Web Server after reboot by updating the `/etc/fstab`
 
 ```sh
@@ -624,17 +626,23 @@ sudo vi /etc/fstab
 <NFS-Server-Private-IP-Address>:/mnt/logs /var/log nfs defaults 0 0
 ```
 
+![vi etc/fstab](./images/9.%20vi%20:etc:fstab.png)
+
 * Test the configuration using the command shown below:
 
 ```sh
 sudo mount -a
 ```
 
+![mount -a](./images/4.%20mount%20-a.png)
+
 * Reload the daemon using the command shown below:
 
 ```sh
 sudo systemctl daemon-reload
 ```
+
+![daemon-reload](./images/9.%20daemon-reload.png)
 
 * Install [Remi's repository](http://www.servermom.org/how-to-enable-remi-repo-on-centos-7-6-and-5/2790/), Apache and PHP
 
@@ -657,6 +665,8 @@ sudo systemctl enable php-fpm
 
 sudo setsebool -P httpd_execmem 1
 ```
+
+![install remi, apache and php](./images/9.%20install%20apache,%20remi%20and%20php.png)
 
 * Open two terminals and SSH into Web Server 2 and Web Server 3 EC2 Instances and run the following command to configure the two Web Servers:
 
@@ -708,7 +718,13 @@ bash install.sh
 
 1. On the Web Server 1 Terminal, go to the `/var/www/` directory and create a `test.txt` file in the `/var/www` directory
 
+![cd /var/www](./images/9.%20cd%20:var:www.png)
+
+![touch test.txt](./images/9.%20touch%20test.png)
+
 2. On the NFS Server Terminal, go to the `/mnt/apps` directory and run the `ll` command to view list the files in the directory. You will see that the file `test.txt` file is present.
+
+![mnt/apps && ll](./images/9.%20cd%20:mnt:apps.png)
 
 * Fork the tooling source code from [Darey.io GitHub account](https://github.com/darey-io/tooling)
 
@@ -718,13 +734,19 @@ bash install.sh
 which git
 ```
 
+![which git](./images/9.%20which%20git.png)
+
 * Install the git package.
 
 ```sh
 sudo yum install git -y
 ```
 
+![install git](./images/9.%20install%20git.png)
+
 * Go to the [Darey.io Tooling Repository](https://github.com/darey-io/tooling) and copy the highlighted link shown below:
+
+![darey.io tooling repo](./images/9.%20git%20repo%20url.png)
 
 * Clone the repository.
 
@@ -732,15 +754,21 @@ sudo yum install git -y
 git clone https://github.com/darey-io/tooling.git
 ```
 
+![git clone](./images/9.%20git%20clone.png)
+
 * Deploy the tooling website's code to the Web Server. Ensure that the **html** folder from the repository is deployed to `/var/www/html`
 
 ```sh
 cd tooling && ll
 ```
 
+![cd tooling && ll](./images/9.%20cd%20tooling%20&&%20ll.png)
+
 ```sh
 sudo cp -r html/. /var/www/html/
 ```
+
+![cp html](./images/9.%20cp%20-r%20html%20:var:www:html.png)
 
 * Disable SELinux.
 
