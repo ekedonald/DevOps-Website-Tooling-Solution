@@ -585,21 +585,29 @@ ssh -i <private-key-name>.pem ec2-user@<Public-IP-address>
 sudo yum install nfs-utils nfs4-acl-tools -y
 ```
 
+![install nfs client](./images/9.%20install%20nfs%20client.png)
+
 * Mount `/var/www` and target the NFS server's export for apps.
 
 ```sh
 sudo mkdir /var/www
 ```
 
+![mkdir var/www](./images/9.%20mkdir%20:var:www.png)
+
 ```sh
 sudo mount -t nfs -o rw,nosuid <NFS-Server-Private_IP-Address>:/mnt/apps /var/www
 ```
+
+![mount -t apps](./images/9.%20mount%20-t%20nfs%20:mnt:aps%20:var:www.png)
 
 * Mount apache's log folder to the NFS server's export for logs.
 
 ```sh
 sudo mount -t nfs -o rw,nosuid <NFS-Server-Private_IP-Address>:/mnt/logs /var/log
 ```
+
+![mount -t logs](./images/9.%20mount%20-t%20nfs%20:mnt:logs%20:var:log.png)
 
 * Verify that NFS was mounted successfully by running `df -h`
 
