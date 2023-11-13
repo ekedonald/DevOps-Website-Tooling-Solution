@@ -7,7 +7,7 @@
  5. **Programming Language**: PHP
  6. **Code Repository**: GitHub
 
-On the diagram below, you can see a common pattern where several stateless Web Servers share a common database and also access the same files using [Network File System (NFS)](https://en.wikipedia.org/wiki/Network_File_System) as a shared file storage. Even though the NFS server might be located on a completely seperate hardware (_i.e. for Web Servers it will look like a local file system from where they can serve the same files_).
+In the diagram below, you can see a common pattern where several stateless Web Servers share a common database and also access the same files using [Network File System (NFS)](https://en.wikipedia.org/wiki/Network_File_System) as a shared file storage. Even though the NFS server might be located on a completely seperate hardware (_i.e. for Web Servers it will look like a local file system from where they can serve the same files_).
 
 ![3-tier web application architecture](./images/0.%203-Tier%20Web%20Application%20Architecture.png)
 _3-Tier Web Application Architecture with a single Database and an NFS Server as a shared files storage_
