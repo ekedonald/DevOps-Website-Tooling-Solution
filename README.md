@@ -829,11 +829,15 @@ mysql -h <database-private-ip> -u <db-username> -p tooling < tooling-db.sql
 sudo mysql
 ```
 
+![sudo mysql](./images/10.%20sudo%20mysql.png)
+
 * Display all the databases.
 
 ```sh
 SHOW DATABASES;
 ```
+
+![show databases](./images/10.%20show%20databases.png)
 
 * Select the `tooling` database you want to work on.
 
@@ -841,17 +845,23 @@ SHOW DATABASES;
 USE tooling;
 ```
 
+![use tooling](./images/10.%20use%20tooling.png)
+
 * Display the tables in the `tooling` database.
 
 ```sh
 SHOW TABLES;
 ```
 
+![show tables](./images/10.%20show%20tables.png)
+
 * Display all the contents of the `users` table.
 
 ```sh
 SELECT * FROM users;
 ```
+
+![select from users](./images/10.%20select%20from%20users.png)
 
 * Input data of a new user into the table.
 
@@ -860,7 +870,11 @@ INSERT INTO users (id, username, password, email, user_type, status)
 -> VALUES (2, 'donald', '5f4dcc3b5aa765d61d8327deb882cf99', 'user@mail.com', 'admin', '1')
 ```
 
+![insert into users](./images/10.%20insert%20into%20users.png)
+
 * Exit the console application.
+
+![exit](./images/10.%20exit.png)
 
 ### Step 11: Start and Enable Apache on the Web Server.
 
