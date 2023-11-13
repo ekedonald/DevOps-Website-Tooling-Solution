@@ -886,11 +886,16 @@ INSERT INTO users (id, username, password, email, user_type, status)
 curl localhost
 ```
 
+![curl localhost](./images/11.%20curl%20localhost.png)
+_Note that you can't connect to the website because the apache service isn't up and running._
+
 * Start the apache service.
 
 ```sh
 sudo systemctl start httpd
 ```
+
+![start apache](./images/11.%20start%20apache.png)
 
 * Enable the apache service.
 
@@ -898,11 +903,15 @@ sudo systemctl start httpd
 sudo systemctl enable httpd
 ```
 
+![enable apache](./images/11.%20enable%20apache.png)
+
 * Check if the apache service is up and running.
 
 ```sh
 sudo systemctl status httpd
 ```
+
+![status apache](./images/11.%20status%20apache.png)
 
 ### Step 12: Open the tooling website in your browser
 
@@ -911,3 +920,5 @@ sudo systemctl status httpd
 ```sh
 http://<Private_IP-Address_Web_Server_1>
 ```
+
+
