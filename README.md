@@ -776,11 +776,15 @@ sudo cp -r html/. /var/www/html/
 sudo setenforce 0
 ```
 
+![setenforce](./images/9.%20setenforce%200.png)
+
 * To make this change permanent, open the following configuration file `/etc/sysconfig/selinux` and set `SELINUX=disabled`
 
 ```sh
 sudo vi /etc/sysconfig/selinux
 ```
+
+![sysconfig/selinux](./images/9.%20selinux%20=%20disabled.png)
 
 * Update the website's configuration to connect to the Database Server by running the following command:
 
@@ -788,11 +792,18 @@ sudo vi /etc/sysconfig/selinux
 sudo vi /var/www/html/functions.php
 ```
 
+![functions.php](./images/9.%20functions1.png)
+
+![functions update](./images/9.%20function%20update.png)
+_Updated `functions.php` file_
+
 * Install MySQL client.
 
 ```sh
 sudo yum install mysql -y
 ```
+
+![install mysql client](./images/9.%20install%20mysql%20client.png)
 
 * Apply `tooling-db.sql` script to your database using this commands shown below:
 
@@ -800,9 +811,13 @@ sudo yum install mysql -y
 cd tooling
 ```
 
+![cd tooling](./images/9.%20cd%20tooling.png)
+
 ```sh
 mysql -h <database-private-ip> -u <db-username> -p tooling < tooling-db.sql
 ```
+
+![mysql -h -u tooling](./images/9.%20mysql%20-h%20-u%20-p%20tooling.png)
 
 ### Step 10: Create a new admin user on your Database Server
 
